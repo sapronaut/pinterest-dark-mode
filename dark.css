@@ -1,0 +1,48 @@
+/* Pinterest Dark Mode */
+
+:root {
+  color-scheme: dark;
+}
+
+/* Invert + hue-rotate everything, then re-invert images/videos/pins
+   so photos stay looking normal while chrome/UI goes dark. */
+html {
+  background: #111 !important;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+img,
+video,
+canvas,
+svg image,
+[style*="background-image"],
+iframe,
+[data-test-id="pin-visual-wrapper"],
+[data-test-id="visual-content-container"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Pinterest logo + brand-colored badges look odd double-inverted;
+   nudge a couple of known containers back if needed */
+[data-test-id="header-logo"] svg {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Smooth transition when toggling/loading */
+html {
+  transition: filter 0.2s ease-in-out;
+}
+
+/* Kill Pinterest's own white flashes on modals/overlays */
+div[role="dialog"],
+[data-test-id="modal-container"] {
+  background-color: #1a1a1a !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
